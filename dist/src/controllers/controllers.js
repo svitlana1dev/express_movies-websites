@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-const apiKey = 'bbddca63dc49b1854ee6fbfccd52f020';
+const apiKey = process.env.API_KEY;
 const apiBaseUrl = 'http://api.themoviedb.org/3';
 export const listOfMovies = async (req, res) => {
     const nowPlayingUrl = `${apiBaseUrl}/movie/now_playing?api_key=${apiKey}`;

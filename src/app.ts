@@ -13,6 +13,16 @@ const app = express();
 
 app.use(helmet());
 
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      scriptSrc: ["'self'", "http://api.themoviedb.org/3"],
+      imgSrc: ["'self'", "https: data:"]
+    }
+  })
+)
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
