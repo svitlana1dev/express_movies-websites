@@ -15,13 +15,12 @@ app.use(helmet());
 
 app.use(
   helmet.contentSecurityPolicy({
-    useDefaults: true,
     directives: {
-      scriptSrc: ["'self'", "http://api.themoviedb.org/3"],
-      imgSrc: ["'self'", "data:", "http://image.tmdb.org"]
-    }
-  })
-)
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "http://image.tmdb.org"],
+    },
+  }),
+);
 
 app.use(cors());
 app.use(express.json());
