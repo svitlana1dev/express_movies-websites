@@ -10,8 +10,16 @@ import helmet from 'helmet';
 import indexRouter from './routes/routes.js';
 
 const app = express();
+const PORT = process.env.PORT || 3001;
 
 app.use(helmet());
+app.use(cors());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.set('views', path.join(__dirname, '../views'));
+app.set('view engine', 'ejs');
 
 app.use(
   helmet.contentSecurityPolicy({
@@ -22,21 +30,11 @@ app.use(
   }),
 );
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static('public'));
-
 app.use(logger('dev'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-const PORT = process.env.PORT || 3001;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 app.use('/', indexRouter);
 
