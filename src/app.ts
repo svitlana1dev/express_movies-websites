@@ -30,7 +30,7 @@ app.use(
     useDefaults: true,
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "unsafe-eval", "http://api.themoviedb.org/3"],
+      scriptSrc: ["'self'", "http://api.themoviedb.org/3", "https://ajax.googleapis.com", "https://maxcdn.bootstrapcdn.com"],
       imgSrc: ["'self'", "data:", "http://image.tmdb.org"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
