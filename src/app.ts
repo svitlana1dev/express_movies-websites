@@ -32,6 +32,7 @@ app.use(
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
     },
+    reportOnly: false,
   }),
 );
 
