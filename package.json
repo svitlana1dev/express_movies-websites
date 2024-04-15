@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon",
     "build": "npm run build-ts && npm run lint",
-    "serve": "node --require 'dotenv/config' --require 'babel-register' dist/src/app.js",
+    "start:dev": "node --require 'dotenv/config' --require 'babel-register' dist/src/app.js",
+    "start:prod": "node dist/src/app.js",
     "build-ts": "tsc",
     "lint": "eslint -c .eslint.json -p tsconfig.json"
   },
