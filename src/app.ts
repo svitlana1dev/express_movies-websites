@@ -18,7 +18,7 @@ app.use(
     useDefaults: true,
     directives: {
       scriptSrc: ["'self'", "http://api.themoviedb.org/3"],
-      imgSrc: ["'self'", "https: data:"]
+      imgSrc: ["'self'", "data:", "http://image.tmdb.org"]
     }
   })
 )
