@@ -6,11 +6,13 @@
   "scripts": {
     "start": "nodemon",
     "build": "npm run build-ts && npm run lint",
-    "serve": "node dist/app.js",
+    "serve": "node --require 'dotenv/config' --require 'babel-register' dist/src/app.js",
     "build-ts": "tsc",
     "lint": "eslint -c .eslint.json -p tsconfig.json"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
