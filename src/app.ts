@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import helmet from 'helmet';
+import contentSecurityPolicy from 'helmet-csp';
 
 import indexRouter from './routes/routes.js';
 
@@ -22,10 +23,14 @@ app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
 app.use(
-  helmet.contentSecurityPolicy({
+  contentSecurityPolicy({
+    useDefaults: true,
     directives: {
       defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "http://api.themoviedb.org/3"],
       imgSrc: ["'self'", "data:", "http://image.tmdb.org"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
     },
   }),
 );
