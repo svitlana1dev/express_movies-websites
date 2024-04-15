@@ -1,5 +1,6 @@
 import createError from 'http-errors';
 import express from 'express';
+import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
@@ -8,6 +9,11 @@ import logger from 'morgan';
 import helmet from 'helmet';
 import contentSecurityPolicy from 'helmet-csp';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config();
+
 import indexRouter from './routes/routes.js';
 
 const app = express();
@@ -15,9 +21,6 @@ const PORT = process.env.PORT || 3001;
 
 app.use(helmet());
 app.use(cors());
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
@@ -32,6 +35,7 @@ app.use(
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
     },
+    reportOnly: false,
   }),
 );
 
