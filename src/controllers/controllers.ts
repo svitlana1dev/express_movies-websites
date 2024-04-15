@@ -2,10 +2,10 @@ import { type Request, type Response, type NextFunction } from 'express';
 import fetch from 'node-fetch';
 import { Movie, Actors, Movies } from '../../types/types.js';
 
-const apiKey = 'bbddca63dc49b1854ee6fbfccd52f020';
+const apiKey = process.env.API_KEY;
 const apiBaseUrl = 'http://api.themoviedb.org/3';
 
-export const listOfMovies =  async (req: Request, res: Response): Promise<void> => {
+export const listOfMovies = async (req: Request, res: Response): Promise<void> => {
   const nowPlayingUrl = `${apiBaseUrl}/movie/now_playing?api_key=${apiKey}`;
 
   try {
