@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import helmet from 'helmet';
 import contentSecurityPolicy from 'helmet-csp';
+import status from 'http-status';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,14 +49,14 @@ app.use(express.static('public'));
 app.use('/', indexRouter);
 
 app.use(function(req, res, next) {
-  next(createError(404));
+  next(createError(status.NOT_FOUND));
 });
 
 app.use(function(err: any, req: any, res: any, next: any) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  res.status(err.status || 500);
+  res.status(err.status || status.INTERNAL_SERVER_ERROR);
   res.render('error');
 });
 
