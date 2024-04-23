@@ -1,5 +1,6 @@
 import { type Request, type Response, type NextFunction } from "express";
 import fetch from "node-fetch";
+import status from "http-status";
 import { Movie, Actors, Movies } from "../types/types.js";
 
 const apiKey = process.env.API_KEY;
@@ -20,7 +21,7 @@ export const listOfMovies = async (
     });
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).json({ error: error.message });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ error: error.message });
     }
   }
 };
@@ -41,7 +42,7 @@ export const findMovieById = async (
     });
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).json({ error: error.message });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ error: error.message });
     }
   }
 };
@@ -70,7 +71,7 @@ export const searchMovie = async (
     });
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).json({ error: error.message });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ error: error.message });
     }
   }
 };
